@@ -1,0 +1,5 @@
+[package]
+name = "zero-calc-linux"
+version = "1.0.0"
+edition = "2021"
+description = "Native Linux client for zero-calc"
