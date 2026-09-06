@@ -31,6 +31,20 @@ class ZeroCalc(tk.Tk):
                 btn = tk.Button(buttons_frame, text=text, font=("Arial", 18, "bold"), bg="#4C566A", fg="#ECEFF4", 
                                 activebackground="#5E81AC", bd=0, command=lambda t=text: self.on_button(t))
                 btn.grid(row=row_idx, column=col_idx, sticky="nsew", padx=2, pady=2)
+                
+        # Bind keyboard events
+        self.bind('<Key>', self.key_pressed)
+        self.bind('<Return>', lambda e: self.on_button('='))
+        self.bind('<BackSpace>', lambda e: self.on_button('C'))
+
+    def key_pressed(self, event):
+        char = event.char
+        if char in '0123456789+-*/.':
+            self.on_button(char)
+        elif char.lower() == 'c':
+            self.on_button('C')
+        elif char == '=':
+            self.on_button('=')
 
     def on_button(self, char):
         current = self.result_var.get()
